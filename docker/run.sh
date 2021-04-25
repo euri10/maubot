@@ -1,6 +1,7 @@
 #!/bin/sh
 
-function fixperms {
+fixperms()
+{
     chown -R $UID:$GID /var/log /data /opt/maubot
 }
 
@@ -18,4 +19,4 @@ fi
 
 alembic -x config=/data/config.yaml upgrade head
 fixperms
-exec su-exec $UID:$GID python3 -m maubot -c /data/config.yaml -b docker/example-config.yaml
+exec python3 -m maubot -c /data/config.yaml -b docker/example-config.yaml
